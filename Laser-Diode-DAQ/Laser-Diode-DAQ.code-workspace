@@ -1,0 +1,12 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"name": "pybindtesting",
+			"path": "../../Documents/PlatformIO/Projects/pybindtesting"
+		}
+	],
+	"settings": {}
+}
