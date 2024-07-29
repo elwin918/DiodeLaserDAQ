@@ -83,7 +83,7 @@ class SerialThread(threading.Thread):
                 with open(self.recordingfilename, 'w', newline='') as csvfile:
                     filewriter = csv.writer(csvfile, delimiter=',',
                                             quotechar='|', quoting=csv.QUOTE_MINIMAL)
-                    filewriter.writerow(['Data/Time', ' Laser1', ' Laser10', ' Laser3', ' Laser4', ' Laser5', ' Laser6', ' Laser7', ' Battery', ' Vin (5)', ' TIA ILX', ' float', ' Temp(F)', ' Vin (28)'])
+                    filewriter.writerow(['Data/Time', ' Laser9', ' Laser10', ' Laser3', ' Laser4', ' Laser5', ' Laser6', ' Laser7', ' Laser8', ' Vin (5)', ' SetMon', ' IMon', ' Temp(F)', ' Vin (28)'])
 
         # Set variables and tell Teensy to start recording
         self.recording = True

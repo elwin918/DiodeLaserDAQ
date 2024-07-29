@@ -160,9 +160,9 @@ float getVoltageAverage(){
 }
 
 
-const int tot_power_factors = 10;  // Total number of power factors used
-float power_factors[tot_power_factors];      // Array to store power factors from the GUI
-int currentIndex = 0;
+// const int tot_power_factors = 10;  // Total number of power factors used
+// float power_factors[tot_power_factors];      // Array to store power factors from the GUI
+// int currentIndex = 0;
 
 // This is the interrupt handler called by the collection interval timer
 void ADC_ISR(void) {
@@ -186,12 +186,12 @@ void ADC_ISR(void) {
   sptr->useconds = now();
   lastmicros =  micros();  // we can use this later  to check for sampling jitter
   
-  if (Serial.available() > 0) {
-    int value = Serial.parseInt();  // Read an integer from serial
-    if (currentIndex < tot_power_factors) {
-        power_factors[currentIndex++] = value;  // Store the value in the array
-    }
-  }
+  // if (Serial.available() > 0) {
+  //   int value = Serial.parseInt();  // Read an integer from serial
+  //   if (currentIndex < tot_power_factors) {
+  //       power_factors[currentIndex++] = value;  // Store the value in the array
+  //   }
+  // }
   
   for(int i=0; i<NUMCHANNELS; i++) {
     sptr->avals[i] = (uint16_t)analogRead(ADCPins[i]);
@@ -210,6 +210,7 @@ void ADC_ISR(void) {
       }
       else {
 
+// TRYING TO GET THE POWER FACTORS INCORPORATED
     //  if globals.power_factors and not data.iloc[1].isnull().any():
     //      for i, pf in enumerate(globals.power_factors):
             
@@ -219,9 +220,19 @@ void ADC_ISR(void) {
     //              scalar = (pf/data[data.columns[i+1]].tail(1).values[0])
     //              data.iloc[:, i+1] = data.iloc[:, i+1].astype('float64') * (0.0 if float(scalar) == 0 else float(scalar))
 
-        float printed_power = sptr->avals[i] * ADCVREF/4096.0;
+        // float printed_power = sptr->avals[i] * ADCVREF/4096.0;
 
-        printed_power = power_factors[i] / 
+        // float pf = power_factors[i];
+
+        //     if (i == tot_power_factors - 1) {
+        //         bool done = true;
+        //     } else {
+        //         float scalar = pf / data[rows - 1][i + 1]; // Assuming tail(1) is the last row
+
+        //         for (int j = 0; j < rows; j++) {
+        //             data[j][i + 1] = data[j][i + 1] * (scalar == 0.0 ? 0.0 : scalar);
+        //         }
+        //     }
 
         Serial.print((sptr->avals[i]) * ADCVREF/4096.0, 4); // voltages for the lasers and for set mon and i mon (right now)
 
