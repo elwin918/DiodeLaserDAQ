@@ -1,5 +1,3 @@
-// Updated 7/29/24
-
 #include <Arduino.h>
 #include <ADC.h>
 #include <SD.h>
